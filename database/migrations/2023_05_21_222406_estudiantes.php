@@ -13,12 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('carreras', function (Blueprint $table) {
+        Schema::create('estudiantes', function (Blueprint $table) {
             $table->id();
             $table->string('Nombre');
-            $table->string('Descripsion');
-                       
-           
+            $table->string('Edad');
+            $table->string('Email');
+            $table->string('Telefono');
+            $table->string('Direccion');
+            $table->unsignedBigInteger('Carrera_id');
+            $table->foreign('Carrera_id')->references('id')->on('carreras');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carreras');
+        Schema::dropIfExists('estudiantes');
     }
 };
